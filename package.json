@@ -1,0 +1,208 @@
+{
+  "name": "binelek-platform",
+  "displayName": "Binelek Platform",
+  "description": "Binelek knowledge graph development tools for VS Code",
+  "version": "1.0.0",
+  "publisher": "binelek",
+  "icon": "resources/icons/binelek-icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/k5tuck/binelek-vscode-extension.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Data Science",
+    "Visualization"
+  ],
+  "keywords": [
+    "binelek",
+    "knowledge-graph",
+    "ontology",
+    "neo4j",
+    "graph-database"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml",
+    "onView:binelekOntologyExplorer",
+    "onCommand:binelek.authenticate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Binelek Platform",
+      "properties": {
+        "binelek.gatewayUrl": {
+          "type": "string",
+          "default": "http://localhost:8092",
+          "description": "Binelek API Gateway URL"
+        },
+        "binelek.tenantId": {
+          "type": "string",
+          "default": "core",
+          "description": "Default tenant ID for multi-tenant operations"
+        },
+        "binelek.mcpServerPath": {
+          "type": "string",
+          "description": "Path to binelek-mcp-server executable (node /path/to/build/index.js)"
+        },
+        "binelek.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically connect to Binelek platform on startup"
+        },
+        "binelek.cypherSyntaxHighlighting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Cypher query syntax highlighting"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "binelek.authenticate",
+        "title": "Binelek: Authenticate",
+        "icon": "$(sign-in)"
+      },
+      {
+        "command": "binelek.disconnect",
+        "title": "Binelek: Disconnect",
+        "icon": "$(sign-out)"
+      },
+      {
+        "command": "binelek.refreshOntology",
+        "title": "Binelek: Refresh Ontology Explorer",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "binelek.queryCypher",
+        "title": "Binelek: Run Cypher Query",
+        "icon": "$(play)"
+      },
+      {
+        "command": "binelek.semanticSearch",
+        "title": "Binelek: Semantic Search",
+        "icon": "$(search)"
+      },
+      {
+        "command": "binelek.keywordSearch",
+        "title": "Binelek: Keyword Search",
+        "icon": "$(search-fuzzy)"
+      },
+      {
+        "command": "binelek.createEntity",
+        "title": "Binelek: Create Entity",
+        "icon": "$(add)"
+      },
+      {
+        "command": "binelek.showEntityDetails",
+        "title": "Binelek: Show Entity Details",
+        "icon": "$(info)"
+      },
+      {
+        "command": "binelek.validateYaml",
+        "title": "Binelek: Validate Ontology YAML",
+        "icon": "$(check)"
+      },
+      {
+        "command": "binelek.generateCode",
+        "title": "Binelek: Generate Code from YAML",
+        "icon": "$(code)"
+      },
+      {
+        "command": "binelek.listPipelines",
+        "title": "Binelek: List Data Pipelines",
+        "icon": "$(list-ordered)"
+      },
+      {
+        "command": "binelek.aiChat",
+        "title": "Binelek: Chat with AI",
+        "icon": "$(comment)"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "binelekOntologyExplorer",
+          "name": "Binelek Ontology",
+          "icon": "resources/icons/binelek-icon.png"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "binelek",
+          "title": "Binelek Platform",
+          "icon": "resources/icons/binelek-icon.png"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "binelekOntologyExplorer",
+        "contents": "No connection to Binelek Platform.\n[Authenticate](command:binelek.authenticate)\n\nMake sure:\n- API Gateway is running (http://localhost:8092)\n- MCP Server path is configured in settings\n- You have valid credentials"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "binelek.refreshOntology",
+          "when": "view == binelekOntologyExplorer",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "binelek.showEntityDetails",
+          "when": "view == binelekOntologyExplorer && viewItem == entity",
+          "group": "inline"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "binelek.showEntityDetails",
+          "when": "false"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "binelek.queryCypher",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorLangId == cypher"
+      },
+      {
+        "command": "binelek.semanticSearch",
+        "key": "ctrl+shift+s",
+        "mac": "cmd+shift+s"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.6.5"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/vsce": "^2.22.0"
+  }
+}
